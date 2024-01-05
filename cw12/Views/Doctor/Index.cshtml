@@ -1,0 +1,32 @@
+﻿@using cw12.Entities
+
+@model Reservation
+
+<div class="container">
+
+<h2 class="mb-4">Reservation</h2>
+
+<form class="w-50" asp-controller="Doctor" asp-action="AddReservation" method="post">
+  <select asp-for="Doctor.Id" class="form-select" aria-label="Doctors">
+      <option selected>please select</option>
+         @foreach (var doctor in ViewData["Doctors"] as List<Doctor>)
+        {
+                <option value="@doctor.Id">@doctor.LastName</option>
+        } 
+  </select>
+
+   @*  <select asp-for="Doctor.Id" asp-items="@ViewData["Doctors"] as List<SelectListItem>">
+        <option selected value="">Choose a day</option>
+    </select> *@
+  <br />
+  <label asp-for="StartTime">start time:</label>
+  <input type="datetime-local" id="StartTime" asp-for="StartTime">
+
+  <label asp-for="StartTime">end time:</label>
+  <input type="datetime-local" id="EndTime" asp-for="EndTime">
+  <br />
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+</form>
+
+</div>
